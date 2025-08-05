@@ -1,4 +1,4 @@
-##How to use
+## How to use
 
 Go to Spotify Developer Dashboard (https://developer.spotify.com/dashboard).
 Create App, get secret and app id.
