@@ -1,3 +1,4 @@
+### Script for transferring music between Spotify and Yandex music
 ## How to use
 
 1. Go to Spotify Developer Dashboard (https://developer.spotify.com/dashboard).
