@@ -71,7 +71,7 @@ def add_track_to_spotify(track_id):
         sp.current_user_saved_tracks_add([track_id])
         return True
     except Exception as e:
-        print("  [Ошибка →Spotify]", e)
+        print("  [Error →Spotify]", e)
         return False
 
 def find_spotify_track(artist, title):
@@ -141,10 +141,10 @@ def sync():
     y_session = make_yandex_session()
 
     spotify_tracks, spotify_ids = get_spotify_saved_tracks()
-    print(f"[Spotify] сохранённых: {len(spotify_tracks)}")
+    print(f"[Spotify] saved: {len(spotify_tracks)}")
 
     yandex_tracks, yandex_ids = get_yandex_liked_tracks(y_session)
-    print(f"[Yandex] лайкнутых: {len(yandex_tracks)}")
+    print(f"[Yandex] liked: {len(yandex_tracks)}")
 
     # Spotify -> Yandex
     for artist, title in spotify_tracks:
@@ -156,10 +156,10 @@ def sync():
         if yid not in yandex_ids:
             ok = add_to_yandex_likes(y_session, yid, y_album)
             if ok:
-                print(f"[→Yandex] Лайкнуто: {artist} - {title}")
+                print(f"[→Yandex] Liked: {artist} - {title}")
                 yandex_ids.add(yid)
             else:
-                print(f"[Ошибка →Yandex] Не удалось лайкнуть: {artist} - {title}")
+                print(f"[Error →Yandex] Failed to like: {artist} - {title}")
         time.sleep(1)
 
     # Yandex -> Spotify
@@ -169,10 +169,10 @@ def sync():
         sid = find_spotify_track(artist, title)
         if sid and sid not in spotify_ids:
             if add_track_to_spotify(sid):
-                print(f"[→Spotify] Сохранено: {artist} - {title}")
+                print(f"[→Spotify] Saved: {artist} - {title}")
                 spotify_ids.add(sid)
             else:
-                print(f"[Ошибка →Spotify] {artist} - {title}")
+                print(f"[Error →Spotify] {artist} - {title}")
         time.sleep(1)
 
 

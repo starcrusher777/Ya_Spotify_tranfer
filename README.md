@@ -1,7 +1,37 @@
-### Script for transferring music between Spotify and Yandex music
-## How to use
+# Spotify ↔ Yandex Music Transfer
 
-1. Go to Spotify Developer Dashboard (https://developer.spotify.com/dashboard).
-2. Create App, get secret and app id.
-3. Go to Yandex Music web player, open dev tools, go to networt, make any api call, get your cookies from request headers, get your user id.
-4. Install fuzzywuzzy, spotipy, python levenshtein
+Script for syncing liked/saved tracks between Spotify and Yandex Music. Copies tracks from Spotify to Yandex and from Yandex to Spotify using fuzzy matching.
+
+## Requirements
+
+- Python 3
+- `fuzzywuzzy`, `spotipy`, `python-Levenshtein`
+
+## Setup
+
+1. **Spotify**
+   - Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
+   - Create an app and get **Client ID** and **Client Secret**.
+   - Set **Redirect URI** (e.g. `http://localhost:8888/callback`).
+
+2. **Yandex Music**
+   - Open [Yandex Music](https://music.yandex.ru) in a browser.
+   - Open DevTools → Network, perform any action (e.g. like a track).
+   - Copy **cookies** from request headers and your **user ID** (e.g. from `x-yandex-music-multi-auth-user-id` or user profile).
+
+3. **Config**
+   - Edit `transfer_script.py`: fill in `SPOTIPY_CLIENT_ID`, `SPOTIPY_CLIENT_SECRET`, `SPOTIPY_REDIRECT_URI`, `YANDEX_USER_ID`, `YANDEX_COOKIES`.
+
+## Install
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run
+
+```bash
+python transfer_script.py
+```
+
+On first run, Spotify will open a browser for authorization.
