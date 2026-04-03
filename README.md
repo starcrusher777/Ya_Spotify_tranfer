@@ -63,20 +63,6 @@ pyinstaller --noconfirm SpotifyYandexTransfer.spec
 
 Output: `dist\SpotifyYandexTransfer.exe` (one file, no console window; logs appear in the app).
 
-## Releasing on GitHub
-
-1. Commit and push to `main`.
-3. Create and push a version tag (example):
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-The workflow [.github/workflows/release.yml](.github/workflows/release.yml) builds `SpotifyYandexTransfer.exe` on `windows-latest` and uploads it to the release for that tag.
-
-If the workflow cannot create releases (permissions), create a **Release** from the tag in the GitHub UI and attach `dist/SpotifyYandexTransfer.exe` manually.
-
 ## Security note
 
 **Yandex cookies** and **Spotify secrets** are sensitive. The GUI can save them to `%LOCALAPPDATA%\YaSpotifyTransfer\config.json`. Do not share that file or commit it to git.
